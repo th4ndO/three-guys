@@ -13,6 +13,8 @@ import {
 import { NAV } from "@/components/nav";
 import { HeroLogo } from "@/components/HeroLogo";
 import { Logo } from "@/components/Logo";
+import { RevealObserver } from "@/components/Reveal";
+import { Ticker } from "@/components/Ticker";
 import { SectionHeading, faceBg, faceRing } from "@/components/ui";
 import { projects, type Category } from "@content/projects";
 import { links, site, type Face } from "@content/site";
@@ -52,40 +54,43 @@ const STEPS = [
 const CATEGORY_FACE: Record<Category, Face> = { Design: "thinker", Entertainment: "joker", Marketing: "happy" };
 
 const buttonDark =
-  "label inline-flex items-center justify-center gap-3 rounded-full bg-ink px-7 py-4 text-cream transition-transform hover:-translate-y-0.5";
+  "group label inline-flex items-center justify-center gap-3 rounded-full bg-ink px-7 py-4 text-cream transition-transform hover:-translate-y-0.5";
 const buttonLine =
-  "label inline-flex items-center justify-center gap-3 rounded-full border-2 border-ink px-7 py-4 text-ink transition-colors hover:bg-ink/10";
+  "group label inline-flex items-center justify-center gap-3 rounded-full border-2 border-ink px-7 py-4 text-ink transition-colors hover:bg-ink/10";
 
 export default function Home() {
   return (
     <>
       <Header />
+      <RevealObserver />
       <main id="main" tabIndex={-1} className="focus:outline-none">
         {/* 1 ─ Hero: centred and stacked, logo first */}
         <section id="top" aria-labelledby="hero-title" className="overflow-hidden bg-sage">
           <div className={`${wrap} flex flex-col items-center pb-20 pt-10 text-center md:pb-28 md:pt-16`}>
-            <HeroLogo className="w-full max-w-[300px] sm:max-w-[400px] md:max-w-[480px]" />
+            <HeroLogo className="hero-in w-full max-w-[300px] sm:max-w-[400px] md:max-w-[480px]" />
             <h1 id="hero-title" className="headline mt-10 text-[3.25rem] sm:text-7xl lg:text-[7.5rem]">
-              Three minds.{" "}
-              <span className="relative inline-block whitespace-nowrap">
+              <span className="hero-in inline-block" style={{ "--d": "0.15s" } as React.CSSProperties}>Three minds.</span>{" "}
+              <span className="hero-in relative inline-block whitespace-nowrap" style={{ "--d": "0.3s" } as React.CSSProperties}>
                 One studio.
                 <span aria-hidden className="absolute inset-x-0 -bottom-2.5 flex h-2 gap-1.5 md:-bottom-3 md:h-3">
-                  <span className="flex-1 rounded-full bg-sunny" />
-                  <span className="flex-1 rounded-full bg-clay" />
-                  <span className="flex-1 rounded-full bg-lagoon" />
+                  <span className="bar flex-1 rounded-full bg-sunny" style={{ "--d": "0.7s" } as React.CSSProperties} />
+                  <span className="bar flex-1 rounded-full bg-clay" style={{ "--d": "0.85s" } as React.CSSProperties} />
+                  <span className="bar flex-1 rounded-full bg-lagoon" style={{ "--d": "1s" } as React.CSSProperties} />
                 </span>
               </span>
             </h1>
-            <p className="mt-8 max-w-xl text-lg leading-relaxed md:text-xl">
+            <p className="hero-in mt-8 max-w-xl text-lg leading-relaxed md:text-xl" style={{ "--d": "0.45s" } as React.CSSProperties}>
               {/* TODO: draft copy */}
               We&rsquo;re a creative studio for design, entertainment and marketing. We think it through, then we make it happen.
             </p>
-            <div className="mt-9 flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
-              <a href="#work" className={buttonDark}>See our work <ArrowDownIcon className="h-5 w-5" /></a>
-              <a href="#contact" className={buttonLine}>Let&rsquo;s talk <ArrowRightIcon className="h-5 w-5" /></a>
+            <div className="hero-in mt-9 flex w-full flex-col gap-3 sm:w-auto sm:flex-row" style={{ "--d": "0.6s" } as React.CSSProperties}>
+              <a href="#work" className={buttonDark}>See our work <ArrowDownIcon className="nudge-down h-5 w-5" /></a>
+              <a href="#contact" className={buttonLine}>Let&rsquo;s talk <ArrowRightIcon className="nudge-right h-5 w-5" /></a>
             </div>
           </div>
         </section>
+
+        <Ticker />
 
         {/* 2 ─ What we do */}
         <section id="services" aria-labelledby="services-title" className={`bg-cream ${section}`}>
@@ -98,10 +103,15 @@ export default function Home() {
               intro="Most projects need a bit of all three. That's the point of us." /* TODO: draft copy */
             />
             <ul className="mt-14 grid gap-6 md:grid-cols-3">
-              {SERVICES.map((s) => (
-                <li key={s.title} className="flex flex-col overflow-hidden rounded-[var(--radius-card)] bg-sage">
+              {SERVICES.map((s, idx) => (
+                <li
+                  key={s.title}
+                  data-reveal
+                  style={{ "--d": `${idx * 0.12}s` } as React.CSSProperties}
+                  className="lift group flex flex-col overflow-hidden rounded-[var(--radius-card)] bg-sage"
+                >
                   <div className={`${faceBg(s.face)} flex items-center justify-center px-6 py-8`}>
-                    <FaceMark face={s.face} className="reveal h-20 w-auto" />
+                    <FaceMark face={s.face} className="hop h-20 w-auto" />
                   </div>
                   <div className="flex flex-1 flex-col p-7">
                     <h3 className="headline text-3xl">{s.title}</h3>
@@ -135,8 +145,13 @@ export default function Home() {
               dark
             />
             <ul className="mt-14 grid gap-10 sm:grid-cols-2 md:grid-cols-3 md:gap-8">
-              {site.team.map((m) => (
-                <li key={m.face} className="text-center sm:text-left">
+              {site.team.map((m, idx) => (
+                <li
+                  key={m.face}
+                  data-reveal
+                  style={{ "--d": `${idx * 0.12}s` } as React.CSSProperties}
+                  className="group text-center sm:text-left"
+                >
                   <div
                     className={`relative mx-auto aspect-square w-full max-w-[320px] overflow-hidden rounded-[28px] bg-cream ring-8 ring-inset ${faceRing(m.face)} sm:mx-0`}
                   >
@@ -144,7 +159,7 @@ export default function Home() {
                       <img src={m.photo} alt={`${m.name}, ${m.title.toLowerCase()}`} className="h-full w-full object-cover" loading="lazy" />
                     ) : (
                       <div className="flex h-full flex-col items-center justify-center gap-4">
-                        <FaceMark face={m.face} decorative className="reveal h-20 w-auto opacity-90" />
+                        <FaceMark face={m.face} decorative className="hop h-20 w-auto opacity-90" />
                         <span className="label text-ink/80">Photo coming soon</span>
                       </div>
                     )}
@@ -168,16 +183,16 @@ export default function Home() {
               intro="A few favourites. Ask us for the full story behind any of them." /* TODO: draft copy */
             />
             <ul className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {projects.map((p) => {
+              {projects.map((p, idx) => {
                 const face = CATEGORY_FACE[p.category];
                 const card = (
-                  <article className="group h-full overflow-hidden rounded-[var(--radius-card)] bg-sage">
+                  <article className="lift group h-full overflow-hidden rounded-[var(--radius-card)] bg-sage">
                     <div className={`relative aspect-[4/3] ${p.image ? "" : faceBg(face)}`}>
                       {p.image ? (
-                        <img src={p.image.src} alt={p.image.alt} className="h-full w-full object-cover" loading="lazy" />
+                        <img src={p.image.src} alt={p.image.alt} className="zoom h-full w-full object-cover" loading="lazy" />
                       ) : (
                         <div className="flex h-full items-center justify-center">
-                          <FaceMark face={face} decorative className="h-16 w-auto opacity-80" />
+                          <FaceMark face={face} decorative className="zoom h-16 w-auto opacity-80" />
                           <span className="label absolute bottom-4 left-4 text-ink">Image coming soon</span>
                         </div>
                       )}
@@ -190,7 +205,7 @@ export default function Home() {
                   </article>
                 );
                 return (
-                  <li key={p.slug}>
+                  <li key={p.slug} data-reveal style={{ "--d": `${(idx % 3) * 0.1}s` } as React.CSSProperties}>
                     {p.href ? (
                       <a href={p.href} className="block h-full rounded-[var(--radius-card)] transition-transform hover:-translate-y-1">
                         {card}
@@ -217,16 +232,21 @@ export default function Home() {
             />
             <ol className="mt-14 grid gap-6 md:grid-cols-3">
               {STEPS.map((s, i) => (
-                <li key={s.title} className="relative rounded-[var(--radius-card)] bg-cream p-7">
+                <li
+                  key={s.title}
+                  data-reveal
+                  style={{ "--d": `${i * 0.15}s` } as React.CSSProperties}
+                  className="lift group relative rounded-[var(--radius-card)] bg-cream p-7"
+                >
                   <div className="flex items-center justify-between">
                     <span className="label">Step {s.n}</span>
-                    <span className={`reveal flex h-14 w-14 items-center justify-center rounded-xl ${faceBg(s.face)}`}>
-                      <FaceMark face={s.face} decorative className="h-9 w-auto" />
+                    <span className={`flex h-14 w-14 items-center justify-center rounded-xl ${faceBg(s.face)}`}>
+                      <FaceMark face={s.face} decorative className="hop h-9 w-auto" />
                     </span>
                   </div>
                   <h3 className="headline mt-6 text-4xl">
                     {s.title}
-                    {i < STEPS.length - 1 && <span aria-hidden className="text-ink/40"> →</span>}
+                    {i < STEPS.length - 1 && <ArrowRightIcon className="nudge-right ml-2 inline h-8 w-8 align-middle text-ink/40" />}
                   </h3>
                   <p className="mt-3 leading-relaxed">{s.text}</p>
                 </li>
@@ -344,8 +364,8 @@ function ContactRow({
   external?: boolean;
 }) {
   return (
-    <li className="flex items-center gap-4">
-      <span aria-hidden className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-cream/10 text-cream [&>svg]:h-5 [&>svg]:w-5">
+    <li className="group flex items-center gap-4">
+      <span aria-hidden className="pop inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-cream/10 text-cream [&>svg]:h-5 [&>svg]:w-5">
         {icon}
       </span>
       <span className="sr-only">{label}: </span>

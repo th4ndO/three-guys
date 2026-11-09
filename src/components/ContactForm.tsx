@@ -60,10 +60,10 @@ export function ContactForm() {
       <div className="flex flex-col gap-3 sm:col-span-2 sm:flex-row sm:items-center sm:justify-between">
         <button
           type="submit"
-          className="label inline-flex items-center justify-center gap-3 rounded-full bg-clay px-7 py-4 text-ink transition-transform hover:-translate-y-0.5"
+          className="group label inline-flex items-center justify-center gap-3 rounded-full bg-clay px-7 py-4 text-ink transition-transform hover:-translate-y-0.5 active:scale-95"
         >
           Send it over
-          <SendIcon className="h-5 w-5" />
+          <SendIcon className="nudge-send h-5 w-5" />
         </button>
         <p className="text-sm text-cream/85" aria-live="polite">
           {sent

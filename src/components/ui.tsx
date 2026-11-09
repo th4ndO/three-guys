@@ -38,10 +38,11 @@ export function SectionHeading({
   center?: boolean;
 }) {
   return (
-    <div className={`max-w-2xl ${center ? "mx-auto text-center" : ""}`}>
+    <div data-reveal className={`max-w-2xl ${center ? "mx-auto text-center" : ""}`}>
       <div className={`flex items-center gap-3 ${center ? "justify-center" : ""}`}>
         <span
-          className={`reveal inline-flex h-14 w-14 items-center justify-center rounded-2xl ${faceBg(face)}`}
+          data-reveal="pop"
+          className={`inline-flex h-14 w-14 items-center justify-center rounded-2xl ${faceBg(face)}`}
         >
           <FaceMark face={face} decorative className="h-8 w-auto" />
         </span>

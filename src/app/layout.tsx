@@ -41,7 +41,10 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en-ZA" className={`${bricolage.variable} ${jetbrains.variable}`}>
+    <html lang="en-ZA" className={`${bricolage.variable} ${jetbrains.variable}`} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
+      </head>
       <body>{children}</body>
     </html>
   );

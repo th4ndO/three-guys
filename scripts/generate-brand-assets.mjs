@@ -79,14 +79,18 @@ function ico(pngs) {
   return Buffer.concat([header, ...entries, ...pngs.map((p) => p.data)]);
 }
 
+// Icons use the totem (all three faces), by choice. The brand guide (p.5)
+// recommends the happy face below 40px; set ICON = "happyFace" to switch back.
+const ICON = "totem";
+
 const icoSizes = [16, 32, 48];
 const icoPngs = await Promise.all(
-  icoSizes.map(async (size) => ({ size, data: await raster(svgs.happyFace, size) })),
+  icoSizes.map(async (size) => ({ size, data: await raster(svgs[ICON], size) })),
 );
 await writeFile(path.join(appDir, "favicon.ico"), ico(icoPngs));
-await writeFile(path.join(appDir, "icon.png"), await raster(svgs.happyFace, 512));
+await writeFile(path.join(appDir, "icon.png"), await raster(svgs[ICON], 512));
 // iOS fills transparency with black, so the apple icon sits on sage.
-await writeFile(path.join(appDir, "apple-icon.png"), await onBackground(svgs.happyFace, 180, 180, 128, 128));
+await writeFile(path.join(appDir, "apple-icon.png"), await onBackground(svgs[ICON], 180, 180, 150, 150));
 await writeFile(path.join(appDir, "opengraph-image.png"), await onBackground(svgs.primary, 1200, 630, 760, 380));
 
 await mkdir(genDir, { recursive: true });

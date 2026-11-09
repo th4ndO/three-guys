@@ -7,3 +7,10 @@ This version has breaking changes — APIs, conventions, and file structure may 
 This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
 
 <!-- END:nextjs-agent-rules -->
+
+# Site standards (Profound Productions rule, 9 Nov 2026)
+
+Keep these when changing this site:
+- Icons throughout: burger icon that morphs into an ✕, arrows on buttons/links, ticks on lists, an icon on every contact method, social icon buttons in the footer. Inline SVG in `src/components/icons.tsx`; icon-only buttons need an `aria-label`.
+- Full-screen mobile menu below a solid header (no backdrop-blur: it traps the fixed menu). Page scroll locked while open; closes on link tap, ✕, Esc, or widening to desktop.
+- Animations and effects: hero entrance, scroll reveals (`data-reveal` + `RevealObserver`), hover lift/zoom/nudges, animated burger, staggered menu links. All motion off under `prefers-reduced-motion`; content never hidden without JS. Never rotate, stretch or redraw the logo or faces.

@@ -52,24 +52,28 @@ export default function Home() {
     <>
       <Header />
       <main id="main" tabIndex={-1} className="focus:outline-none">
-        {/* 1 ─ Hero */}
-        <section id="top" aria-labelledby="hero-title" className="bg-sage">
-          <div className={`${wrap} grid items-center gap-12 pb-20 pt-12 md:grid-cols-[1.05fr_1fr] md:gap-16 md:pb-28 md:pt-20`}>
-            <HeroLogo className="mx-auto w-full max-w-[300px] sm:max-w-[380px] md:order-2 md:max-w-[460px]" />
-            <div>
-              <h1 id="hero-title" className="headline text-[3.25rem] sm:text-7xl lg:text-8xl">
-                Three minds.
-                <br />
+        {/* 1 ─ Hero: centred and stacked, logo first */}
+        <section id="top" aria-labelledby="hero-title" className="overflow-hidden bg-sage">
+          <div className={`${wrap} flex flex-col items-center pb-20 pt-10 text-center md:pb-28 md:pt-16`}>
+            <HeroLogo className="w-full max-w-[300px] sm:max-w-[400px] md:max-w-[480px]" />
+            <h1 id="hero-title" className="headline mt-10 text-[3.25rem] sm:text-7xl lg:text-[7.5rem]">
+              Three minds.{" "}
+              <span className="relative inline-block whitespace-nowrap">
                 One studio.
-              </h1>
-              <p className="mt-6 max-w-md text-lg leading-relaxed md:text-xl">
-                {/* TODO: draft copy */}
-                We&rsquo;re a creative studio for design, entertainment and marketing. We think it through, then we make it happen.
-              </p>
-              <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-                <a href="#work" className={buttonDark}>See our work</a>
-                <a href="#contact" className={buttonLine}>Let&rsquo;s talk</a>
-              </div>
+                <span aria-hidden className="absolute inset-x-0 -bottom-2.5 flex h-2 gap-1.5 md:-bottom-3 md:h-3">
+                  <span className="flex-1 rounded-full bg-sunny" />
+                  <span className="flex-1 rounded-full bg-clay" />
+                  <span className="flex-1 rounded-full bg-lagoon" />
+                </span>
+              </span>
+            </h1>
+            <p className="mt-8 max-w-xl text-lg leading-relaxed md:text-xl">
+              {/* TODO: draft copy */}
+              We&rsquo;re a creative studio for design, entertainment and marketing. We think it through, then we make it happen.
+            </p>
+            <div className="mt-9 flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
+              <a href="#work" className={buttonDark}>See our work</a>
+              <a href="#contact" className={buttonLine}>Let&rsquo;s talk</a>
             </div>
           </div>
         </section>
@@ -79,6 +83,7 @@ export default function Home() {
           <div className={wrap}>
             <SectionHeading
               id="services-title"
+              face="happy"
               eyebrow="What we do"
               title="Three things. Done properly."
               intro="Most projects need a bit of all three. That's the point of us." /* TODO: draft copy */
@@ -112,6 +117,7 @@ export default function Home() {
           <div className={wrap}>
             <SectionHeading
               id="team-title"
+              face="joker"
               eyebrow="Meet the guys"
               title="One of each. You'll see."
               intro="Three different heads, one shared way of working." /* TODO: draft copy */
@@ -145,6 +151,7 @@ export default function Home() {
           <div className={wrap}>
             <SectionHeading
               id="work-title"
+              face="thinker"
               eyebrow="Work"
               title="Things we've made."
               intro="A few favourites. Ask us for the full story behind any of them." /* TODO: draft copy */
@@ -192,6 +199,7 @@ export default function Home() {
           <div className={wrap}>
             <SectionHeading
               id="process-title"
+              face="happy"
               eyebrow={site.slogan}
               title="How we work."
               intro="Mind over matter means we think before we make. It saves you time, money and a few headaches." /* TODO: draft copy */
@@ -220,7 +228,8 @@ export default function Home() {
         {site.showTestimonials && site.testimonials.length > 0 && (
           <section id="testimonials" aria-labelledby="testimonials-title" className={`bg-cream ${section}`}>
             <div className={wrap}>
-              <SectionHeading id="testimonials-title" eyebrow="Kind words" title="Don't take our word for it." />
+              <SectionHeading id="testimonials-title" face="joker"
+              eyebrow="Kind words" title="Don't take our word for it." />
               <ul className="mt-14 grid gap-6 md:grid-cols-3">
                 {site.testimonials.map((t) => (
                   <li key={t.name} className="rounded-[var(--radius-card)] bg-sage p-7">
@@ -242,7 +251,8 @@ export default function Home() {
             <div>
               <SectionHeading
                 id="contact-title"
-                eyebrow="Contact"
+                face="joker"
+              eyebrow="Contact"
                 title="Got an idea? Let's talk."
                 intro="Big, small or still a bit fuzzy. Tell us what you're thinking and we'll get back to you." /* TODO: draft copy */
                 dark
@@ -299,7 +309,7 @@ function ContactRow({ label, href, text, external }: { label: string; href: stri
       <span className="label w-28 shrink-0 text-cream/85">{label}</span>
       <a
         href={href}
-        className="font-medium underline decoration-sunny decoration-2 underline-offset-4 hover:decoration-cream"
+        className="font-medium underline decoration-clay decoration-2 underline-offset-4 hover:decoration-cream"
         {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
       >
         {text}

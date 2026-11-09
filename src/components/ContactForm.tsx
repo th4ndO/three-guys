@@ -6,7 +6,7 @@ import { site } from "@content/site";
 const NEEDS = ["Design", "Entertainment", "Marketing", "A bit of everything", "Not sure yet"];
 
 const field =
-  "mt-2 block w-full rounded-xl border-2 border-cream/30 bg-midnight px-4 py-3 text-cream placeholder:text-cream/60 focus:border-sunny focus:outline-none focus-visible:outline-none";
+  "mt-2 block w-full rounded-xl border-2 border-cream/30 bg-midnight px-4 py-3 text-cream placeholder:text-cream/60 focus:border-clay focus:outline-none focus-visible:outline-none";
 
 /** No backend: builds a pre-filled email in the visitor's own mail app. */
 export function ContactForm() {
@@ -59,7 +59,7 @@ export function ContactForm() {
       <div className="flex flex-col gap-3 sm:col-span-2 sm:flex-row sm:items-center sm:justify-between">
         <button
           type="submit"
-          className="label inline-flex justify-center rounded-full bg-sunny px-7 py-4 text-ink transition-transform hover:-translate-y-0.5"
+          className="label inline-flex justify-center rounded-full bg-clay px-7 py-4 text-ink transition-transform hover:-translate-y-0.5"
         >
           Send it over
         </button>

@@ -1,3 +1,4 @@
+import { FaceMark } from "./FaceMark";
 import type { Face } from "@content/site";
 import { faceColour } from "@content/site";
 
@@ -15,23 +16,42 @@ export const RING: Record<"sunny" | "clay" | "lagoon", string> = {
 export const faceBg = (f: Face) => BG[faceColour[f]];
 export const faceRing = (f: Face) => RING[faceColour[f]];
 
+/**
+ * Section heading led by one of the faces as a marker (a tilted face tile and a
+ * pill tag), rather than a plain small-caps eyebrow line.
+ */
 export function SectionHeading({
   id,
+  face,
   eyebrow,
   title,
   intro,
   dark = false,
+  center = false,
 }: {
   id: string;
+  face: Face;
   eyebrow: string;
   title: string;
   intro?: string;
   dark?: boolean;
+  center?: boolean;
 }) {
   return (
-    <div className="max-w-2xl">
-      <p className={`label ${dark ? "text-cream" : "text-ink"}`}>{eyebrow}</p>
-      <h2 id={id} className="headline mt-4 text-4xl sm:text-5xl md:text-6xl">
+    <div className={`max-w-2xl ${center ? "mx-auto text-center" : ""}`}>
+      <div className={`flex items-center gap-3 ${center ? "justify-center" : ""}`}>
+        <span
+          className={`reveal inline-flex h-14 w-14 -rotate-6 items-center justify-center rounded-2xl ${faceBg(face)}`}
+        >
+          <FaceMark face={face} decorative className="h-8 w-auto" />
+        </span>
+        <span
+          className={`label rounded-full border-2 px-3 py-1.5 ${dark ? "border-cream/40 text-cream" : "border-ink/25 text-ink"}`}
+        >
+          {eyebrow}
+        </span>
+      </div>
+      <h2 id={id} className="headline mt-6 text-4xl sm:text-5xl md:text-6xl">
         {title}
       </h2>
       {intro && (

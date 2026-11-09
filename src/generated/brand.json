@@ -1,0 +1,27 @@
+{
+  "primary": {
+    "src": "/brand/three-guys_primary_full-colour.svg",
+    "width": 480,
+    "height": 120
+  },
+  "primaryOnDark": {
+    "src": "/brand/three-guys_primary_full-colour-on-dark.svg",
+    "width": 480,
+    "height": 120
+  },
+  "primarySlogan": {
+    "src": "/brand/three-guys_primary-slogan_full-colour.svg",
+    "width": 480,
+    "height": 220
+  },
+  "totem": {
+    "src": "/brand/three-guys_icon_full-colour.svg",
+    "width": 100,
+    "height": 204
+  },
+  "happyFace": {
+    "src": "/brand/three-guys_icon-happy-face_full-colour.svg",
+    "width": 64,
+    "height": 64
+  }
+}

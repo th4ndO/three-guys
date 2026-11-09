@@ -1,0 +1,8 @@
+<!-- PLACEHOLDER: replace this file with the supplied brand file of the same name. Do not edit the real logo. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 220" width="480" height="220">
+  <rect x="2" y="2" width="476" height="216" rx="12" fill="none" stroke="#1E1F22" stroke-width="3" stroke-dasharray="10 8"/>
+  <g id="face-happy"><circle cx="160" cy="80" r="30" fill="none" stroke="#1E1F22" stroke-width="3" stroke-dasharray="6 6"/></g>
+  <g id="face-joker"><circle cx="240" cy="80" r="30" fill="none" stroke="#1E1F22" stroke-width="3" stroke-dasharray="6 6"/></g>
+  <g id="face-thinker"><circle cx="320" cy="80" r="30" fill="none" stroke="#1E1F22" stroke-width="3" stroke-dasharray="6 6"/></g>
+  <text x="240" y="160" text-anchor="middle" font-family="monospace" font-size="18" fill="#1E1F22">LOGO + SLOGAN PLACEHOLDER</text>
+</svg>

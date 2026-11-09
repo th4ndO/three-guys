@@ -1,0 +1,81 @@
+@import "tailwindcss";
+
+@theme {
+  --color-sage: #a8b79b;
+  --color-cream: #f6efe2;
+  --color-ink: #1e1f22;
+  --color-midnight: #22304a;
+  --color-sunny: #e6bb5c;
+  --color-clay: #d2735a;
+  --color-lagoon: #4f9a97;
+
+  --font-sans: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+
+  --radius-card: 16px;
+  --tracking-headline: -0.04em;
+  --tracking-label: 0.2em;
+}
+
+@layer base {
+  html {
+    scroll-padding-top: 5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-sage font-sans text-ink antialiased;
+  }
+  :focus-visible {
+    outline: 3px solid var(--color-ink);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+  .on-dark :focus-visible {
+    outline-color: var(--color-cream);
+  }
+}
+
+@utility label {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  font-size: 0.75rem;
+  line-height: 1.4;
+}
+
+@utility headline {
+  font-weight: 800;
+  letter-spacing: var(--tracking-headline);
+  line-height: 0.95;
+}
+
+/* ── Motion: only when the visitor hasn't asked for less ─────────────────── */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Hero face bob rules are generated in components/HeroLogo.tsx. */
+
+  /* Section markers fade/slide in as they scroll into view (no JS). */
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: reveal linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 70%;
+    }
+  }
+}
+
+@keyframes bob {
+  0% { transform: translateY(0); }
+  35% { transform: translateY(-14%); }
+  65% { transform: translateY(4%); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes reveal {
+  from { opacity: 0; transform: translateY(24px) scale(0.92); }
+  to { opacity: 1; transform: none; }
+}

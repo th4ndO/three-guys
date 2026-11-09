@@ -1,0 +1,5 @@
+<!-- PLACEHOLDER: replace this file with the supplied brand file of the same name. Do not edit the real logo. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <rect x="2" y="2" width="60" height="60" rx="12" fill="none" stroke="#1E1F22" stroke-width="3" stroke-dasharray="10 8"/>
+  <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" font-family="monospace" font-size="18" fill="#1E1F22">ICON</text>
+</svg>

@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { Logo } from "./Logo";
 import { NAV } from "./nav";
+import { site } from "@content/site";
 
 
 export function Header() {
@@ -11,12 +12,21 @@ export function Header() {
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    // Close if the screen grows to desktop width while the menu is open.
+    const mq = window.matchMedia("(min-width: 768px)");
+    const onMq = () => mq.matches && setOpen(false);
     window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
+    mq.addEventListener("change", onMq);
+    document.body.style.overflow = "hidden"; // no page scroll behind the menu
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      mq.removeEventListener("change", onMq);
+      document.body.style.overflow = "";
+    };
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-ink/10 bg-cream/95 backdrop-blur supports-[backdrop-filter]:bg-cream/85">
+    <header className="sticky top-0 z-50 border-b border-ink/10 bg-cream">
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:rounded-lg focus:bg-ink focus:px-4 focus:py-2 focus:text-cream"
@@ -69,21 +79,31 @@ export function Header() {
         id="mobile-nav"
         aria-label="Main"
         hidden={!open}
-        className="border-t border-ink/10 bg-cream md:hidden"
+        className="fixed inset-x-0 bottom-0 top-24 overflow-y-auto overscroll-contain bg-cream md:hidden"
       >
-        <ul className="mx-auto flex max-w-6xl flex-col px-5 py-3">
-          {NAV.map((item) => (
-            <li key={item.href}>
-              <a
-                href={item.href}
-                onClick={() => setOpen(false)}
-                className="headline block py-3 text-3xl"
-              >
-                {item.label}
-              </a>
-            </li>
-          ))}
-        </ul>
+        <div className="flex min-h-full flex-col px-5 pb-10 pt-6">
+          <ul className="flex flex-col">
+            {NAV.map((item) => (
+              <li key={item.href} className="border-b border-ink/10">
+                <a
+                  href={item.href}
+                  onClick={() => setOpen(false)}
+                  className="headline block py-4 text-4xl"
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+          <a
+            href="#contact"
+            onClick={() => setOpen(false)}
+            className="label mt-8 inline-flex justify-center rounded-full bg-ink px-7 py-4 text-cream"
+          >
+            Let&rsquo;s talk
+          </a>
+          <p className="label mt-auto pt-10 text-center">{site.slogan}</p>
+        </div>
       </nav>
     </header>
   );

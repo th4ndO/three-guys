@@ -23,7 +23,7 @@ export function Header() {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
     // Close if the screen grows to desktop width while the menu is open.
-    const mq = window.matchMedia("(min-width: 768px)");
+    const mq = window.matchMedia("(min-width: 1024px)");
     const onMq = () => mq.matches && setOpen(false);
     window.addEventListener("keydown", onKey);
     mq.addEventListener("change", onMq);
@@ -43,23 +43,22 @@ export function Header() {
       >
         Skip to content
       </a>
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-6 px-3 md:h-24 md:px-6">
+      <div className="mx-auto flex h-[72px] max-w-6xl items-center justify-between gap-6 px-2 md:h-24 md:px-6">
         <a href="#top" aria-label="Three Guys — back to top" className="flex min-h-11 shrink-0 items-center">
-          {/* Phones: the wordmark (brand guide p.6 — the faces appear right below in the hero).
-              Tablet/desktop: the primary logo with its full clear space. */}
-          <Logo variant="wordmark" alt="" className="h-auto w-[148px] md:hidden" priority />
-          <Logo variant="primary" alt="" className="hidden h-auto w-[150px] md:block" priority />
+          {/* The primary logo (faces + wordmark), never below its 120px minimum. */}
+          <Logo variant="primary" alt="" className="h-auto w-[136px] md:w-[150px]" priority />
         </a>
 
-        <nav aria-label="Main" className="hidden md:block">
-          <ul className="flex items-center gap-1 lg:gap-2">
+        <nav aria-label="Main" className="hidden lg:block">
+          <ul className="flex items-center gap-1 whitespace-nowrap xl:gap-2">
             {NAV.map((item) =>
               item.href === "#contact" ? (
                 <li key={item.href} className="ml-2">
                   <a
                     href={item.href}
-                    className="group label inline-flex items-center gap-2 rounded-full bg-ink px-5 py-3 text-cream transition-colors hover:bg-midnight"
+                    className="group label inline-flex min-h-11 items-center gap-2.5 rounded-full bg-ink py-1.5 pl-1.5 pr-5 text-cream transition-colors hover:bg-midnight"
                   >
+                    <NavIconTile icon={item.icon} tone={item.tone} size="sm" round />
                     Let&rsquo;s talk
                     <ArrowRightIcon className="nudge-right h-4 w-4" />
                   </a>
@@ -68,9 +67,10 @@ export function Header() {
                 <li key={item.href}>
                   <a
                     href={item.href}
-                    className="navlink label relative rounded-full px-3 py-3"
+                    className="group label inline-flex min-h-11 items-center gap-2 rounded-full px-2 xl:px-3"
                   >
-                    {item.label}
+                    <NavIconTile icon={item.icon} tone={item.tone} size="sm" />
+                    <span className="navlink relative py-1">{item.label}</span>
                   </a>
                 </li>
               ),
@@ -80,7 +80,7 @@ export function Header() {
 
         <button
           type="button"
-          className="inline-flex h-12 w-12 items-center justify-center rounded-full border-2 border-ink transition-colors hover:bg-ink hover:text-cream md:hidden"
+          className="inline-flex h-12 w-12 items-center justify-center rounded-full border-2 border-ink transition-colors hover:bg-ink hover:text-cream lg:hidden"
           aria-expanded={open}
           aria-controls="mobile-nav"
           aria-label={open ? "Close menu" : "Open menu"}
@@ -99,7 +99,7 @@ export function Header() {
         id="mobile-nav"
         aria-label="Main"
         hidden={!open}
-        className="menu-panel fixed inset-x-0 bottom-0 top-16 overflow-y-auto overscroll-contain bg-cream md:hidden"
+        className="menu-panel fixed inset-x-0 bottom-0 top-[72px] overflow-y-auto overscroll-contain bg-cream md:top-24 lg:hidden"
       >
         <div className="flex min-h-full flex-col px-5 pb-10 pt-6">
           <ul className="flex flex-col">

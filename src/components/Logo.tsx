@@ -1,6 +1,6 @@
 import brand from "@/generated/brand.json";
 
-type Variant = "primary" | "primaryOnDark" | "primarySlogan" | "wordmark";
+type Variant = "primary" | "primaryOnDark" | "primarySlogan";
 
 /** Renders a supplied brand SVG exactly as-is. Width/height come from the file's viewBox. */
 export function Logo({

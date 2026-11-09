@@ -15,7 +15,6 @@ import { NavIconTile } from "@/components/NavIconTile";
 import { HeroLogo } from "@/components/HeroLogo";
 import { Logo } from "@/components/Logo";
 import { RevealObserver } from "@/components/Reveal";
-import { Ticker } from "@/components/Ticker";
 import { SectionHeading, faceBg, faceRing } from "@/components/ui";
 import { projects, type Category } from "@content/projects";
 import { links, site, type Face } from "@content/site";
@@ -91,7 +90,12 @@ export default function Home() {
           </div>
         </section>
 
-        <Ticker />
+        {/* Brand stripe: the three face colours, as on the letterhead and banner (guide p.15). */}
+        <div aria-hidden="true" className="flex h-2.5 md:h-3.5">
+          <span className="bar flex-1 bg-sunny" style={{ "--d": "0.9s" } as React.CSSProperties} />
+          <span className="bar flex-1 bg-clay" style={{ "--d": "1.05s" } as React.CSSProperties} />
+          <span className="bar flex-1 bg-lagoon" style={{ "--d": "1.2s" } as React.CSSProperties} />
+        </div>
 
         {/* 2 ─ What we do */}
         <section id="services" aria-labelledby="services-title" className={`bg-cream ${section}`}>

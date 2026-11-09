@@ -11,6 +11,7 @@ import {
   WhatsAppIcon,
 } from "@/components/icons";
 import { NAV } from "@/components/nav";
+import { NavIconTile } from "@/components/NavIconTile";
 import { HeroLogo } from "@/components/HeroLogo";
 import { Logo } from "@/components/Logo";
 import { RevealObserver } from "@/components/Reveal";
@@ -320,7 +321,10 @@ export default function Home() {
             <ul className="flex flex-wrap gap-x-6 gap-y-1">
               {NAV.map((n) => (
                 <li key={n.href}>
-                  <a href={n.href} className="inline-flex min-h-11 min-w-11 items-center hover:underline">{n.label}</a>
+                  <a href={n.href} className="inline-flex min-h-11 min-w-11 items-center gap-2.5 hover:underline">
+                    <NavIconTile icon={n.icon} tone={n.tone} size="sm" />
+                    {n.label}
+                  </a>
                 </li>
               ))}
             </ul>

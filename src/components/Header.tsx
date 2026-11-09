@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { Logo } from "./Logo";
 import { NAV } from "./nav";
+import { NavIconTile } from "./NavIconTile";
 import { site } from "@content/site";
 import { ArrowRightIcon } from "./icons";
 
@@ -109,7 +110,10 @@ export function Header() {
                   onClick={() => setOpen(false)}
                   className="group headline flex items-center justify-between py-4 text-4xl"
                 >
-                  {item.label}
+                  <span className="flex items-center gap-4">
+                    <NavIconTile icon={item.icon} tone={item.tone} />
+                    {item.label}
+                  </span>
                   <ArrowRightIcon className="nudge-right h-7 w-7 shrink-0" />
                 </a>
               </li>

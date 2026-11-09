@@ -66,3 +66,38 @@ export const InstagramIcon = (p: P) => (
     <path d="M17.5 6.5h.01" />
   </Icon>
 );
+
+// Section icons for the menus
+export const SparkleIcon = (p: P) => (
+  <Icon {...p}>
+    <path d="M12 3.5 13.9 9a1.5 1.5 0 0 0 1 1l5.6 2-5.6 2a1.5 1.5 0 0 0-1 1L12 20.5 10.1 15a1.5 1.5 0 0 0-1-1L3.5 12l5.6-2a1.5 1.5 0 0 0 1-1Z" />
+  </Icon>
+);
+export const PeopleIcon = (p: P) => (
+  <Icon {...p}>
+    <circle cx="9" cy="8" r="3.5" />
+    <path d="M2.5 20a6.5 6.5 0 0 1 13 0" />
+    <path d="M16 4.6a3.5 3.5 0 0 1 0 6.8M18.5 14a6.5 6.5 0 0 1 3 6" />
+  </Icon>
+);
+export const GalleryIcon = (p: P) => (
+  <Icon {...p}>
+    <rect x="3" y="4" width="18" height="16" rx="3" />
+    <circle cx="9" cy="10" r="1.8" />
+    <path d="m21 16-5-5-9 9" />
+  </Icon>
+);
+export const StepsIcon = (p: P) => (
+  <Icon {...p}>
+    <circle cx="5.5" cy="6" r="2.5" />
+    <circle cx="18.5" cy="12" r="2.5" />
+    <circle cx="5.5" cy="18" r="2.5" />
+    <path d="M8 6h4a4 4 0 0 1 4 4M16 14a4 4 0 0 1-4 4H8" />
+  </Icon>
+);
+export const ChatIcon = (p: P) => (
+  <Icon {...p}>
+    <path d="M20 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-4.2A8 8 0 1 1 20 12Z" />
+    <path d="M8.5 12h.01M12 12h.01M15.5 12h.01" strokeWidth={2.6} />
+  </Icon>
+);

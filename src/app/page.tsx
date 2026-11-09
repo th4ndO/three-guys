@@ -138,8 +138,7 @@ export default function Home() {
                       </div>
                     )}
                   </div>
-                  <p className="label mt-6">{m.title}</p>
-                  <h3 className="headline mt-2 text-3xl">{m.name}</h3>
+                  <h3 className="headline mt-6 text-3xl">{m.name}</h3>
                   <p className="mt-1 text-cream/85">{m.role}</p>
                 </li>
               ))}

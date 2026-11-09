@@ -112,8 +112,8 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 3 ─ Meet the guys */}
-        <section id="team" aria-labelledby="team-title" className={`bg-sage ${section}`}>
+        {/* 3 ─ Meet the guys: faces on Midnight, as in the brand guide (p.12) */}
+        <section id="team" aria-labelledby="team-title" className={`on-dark bg-midnight text-cream ${section}`}>
           <div className={wrap}>
             <SectionHeading
               id="team-title"
@@ -121,6 +121,7 @@ export default function Home() {
               eyebrow="Meet the guys"
               title="One of each. You'll see."
               intro="Three different heads, one shared way of working." /* TODO: draft copy */
+              dark
             />
             <ul className="mt-14 grid gap-10 sm:grid-cols-2 md:grid-cols-3 md:gap-8">
               {site.team.map((m) => (
@@ -139,7 +140,7 @@ export default function Home() {
                   </div>
                   <p className="label mt-6">{m.title}</p>
                   <h3 className="headline mt-2 text-3xl">{m.name}</h3>
-                  <p className="mt-1 text-ink/85">{m.role}</p>
+                  <p className="mt-1 text-cream/85">{m.role}</p>
                 </li>
               ))}
             </ul>
@@ -274,7 +275,7 @@ export default function Home() {
         <div className={`${wrap} flex flex-col gap-10 md:flex-row md:items-end md:justify-between`}>
           <div>
             <Logo variant="primaryOnDark" alt="Three Guys" className="h-auto w-[180px]" />
-            <p className="label mt-5 text-cream">{site.slogan}</p>
+            <p className="label mt-6 text-cream">{site.slogan}</p>
           </div>
           <nav aria-label="Footer">
             <ul className="flex flex-wrap gap-x-6 gap-y-3">

@@ -35,15 +35,19 @@ export const site = {
   showTestimonials: false,
   testimonials: [] as { quote: string; name: string; company?: string }[],
 
-  // CSS selectors for the three face groups inside the hero slogan logo SVG,
-  // in bob order. TODO: after dropping in the real file, open it and set these
-  // to its face group ids (e.g. "#happy"). Unmatched selectors simply don't animate.
-  heroFaceSelectors: ["#face-happy", "#face-joker", "#face-thinker"],
+  // The supplied slogan logo is flat paths (no groups), so each face is picked
+  // by path position — happy: tile + cheeks + features; joker; thinker. The file
+  // itself is never edited. Only update this if the logo file is replaced.
+  heroFaceSelectors: [
+    "svg > path:nth-of-type(1), svg > path:nth-of-type(4), svg > path:nth-of-type(5), svg > path:nth-of-type(6)",
+    "svg > path:nth-of-type(2), svg > path:nth-of-type(7)",
+    "svg > path:nth-of-type(3), svg > path:nth-of-type(8)",
+  ],
 
   credit: { label: "Website by Profound Productions", href: null as string | null }, // TODO: optional link
 };
 
-/** Accent colour token per face. TODO: confirm against the totem tile colours. */
+/** Face colours, per the brand guide (p.12). */
 export const faceColour: Record<Face, "sunny" | "clay" | "lagoon"> = {
   happy: "sunny",
   joker: "clay",

@@ -23,9 +23,9 @@ export function Header() {
       >
         Skip to content
       </a>
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-6 px-5 md:h-20 md:px-8">
+      <div className="mx-auto flex h-24 max-w-6xl items-center justify-between gap-6 px-3 md:px-6">
         <a href="#top" aria-label="Three Guys — back to top" className="shrink-0">
-          <Logo variant="primary" alt="" className="h-auto w-[120px] md:w-[150px]" priority />
+          <Logo variant="primary" alt="" className="h-auto w-[140px] md:w-[150px]" priority />
         </a>
 
         <nav aria-label="Main" className="hidden md:block">

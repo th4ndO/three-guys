@@ -22,7 +22,7 @@ export function HeroLogo({ className }: { className?: string }) {
   const css = site.heroFaceSelectors
     .map(
       (sel, i) =>
-        `.hero-logo ${sel}{transform-box:fill-box;transform-origin:center;animation:bob .9s cubic-bezier(.34,1.56,.64,1) both;animation-delay:${(0.25 + i * 0.18).toFixed(2)}s}`,
+        `.hero-logo :is(${sel}){animation:bob .9s cubic-bezier(.34,1.56,.64,1) both;animation-delay:${(0.25 + i * 0.18).toFixed(2)}s}`,
     )
     .join("");
 

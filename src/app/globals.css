@@ -19,7 +19,7 @@
 
 @layer base {
   html {
-    scroll-padding-top: 5rem;
+    scroll-padding-top: 6rem;
     -webkit-text-size-adjust: 100%;
   }
   body {
@@ -69,9 +69,10 @@
 }
 
 @keyframes bob {
+  /* px here are SVG user units: one face tile is 64 units tall. */
   0% { transform: translateY(0); }
-  35% { transform: translateY(-14%); }
-  65% { transform: translateY(4%); }
+  35% { transform: translateY(-9px); }
+  65% { transform: translateY(2.5px); }
   100% { transform: translateY(0); }
 }
 

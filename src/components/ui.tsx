@@ -17,7 +17,7 @@ export const faceBg = (f: Face) => BG[faceColour[f]];
 export const faceRing = (f: Face) => RING[faceColour[f]];
 
 /**
- * Section heading led by one of the faces as a marker (a tilted face tile and a
+ * Section heading led by one of the faces as a marker (a face tile and a
  * pill tag), rather than a plain small-caps eyebrow line.
  */
 export function SectionHeading({
@@ -41,7 +41,7 @@ export function SectionHeading({
     <div className={`max-w-2xl ${center ? "mx-auto text-center" : ""}`}>
       <div className={`flex items-center gap-3 ${center ? "justify-center" : ""}`}>
         <span
-          className={`reveal inline-flex h-14 w-14 -rotate-6 items-center justify-center rounded-2xl ${faceBg(face)}`}
+          className={`reveal inline-flex h-14 w-14 items-center justify-center rounded-2xl ${faceBg(face)}`}
         >
           <FaceMark face={face} decorative className="h-8 w-auto" />
         </span>

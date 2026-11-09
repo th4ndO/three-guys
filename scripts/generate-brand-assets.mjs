@@ -17,7 +17,7 @@ const files = {
   primaryOnDark: "three-guys_primary_full-colour-on-dark.svg",
   primarySlogan: "three-guys_primary-slogan_full-colour.svg",
   totem: "three-guys_icon_full-colour.svg",
-  happyFace: "three-guys_icon-happy-face_full-colour.svg",
+  happyFace: "three-guys_face_full-colour.svg",
 };
 
 const svgs = {};
@@ -28,12 +28,14 @@ for (const [key, name] of Object.entries(files)) {
   svgs[key] = buf;
   const text = buf.toString("utf8");
   if (text.includes("PLACEHOLDER")) placeholders.push(name);
-  const vb = text.match(/viewBox\s*=\s*["']\s*[-\d.]+[\s,]+[-\d.]+[\s,]+([\d.]+)[\s,]+([\d.]+)/);
+  const vb = text.match(/viewBox\s*=\s*["']\s*([-\d.]+)[\s,]+([-\d.]+)[\s,]+([\d.]+)[\s,]+([\d.]+)/);
   const meta = await sharp(buf).metadata();
   dims[key] = {
     src: `/brand/${name}`,
-    width: vb ? Number(vb[1]) : meta.width,
-    height: vb ? Number(vb[2]) : meta.height,
+    x: vb ? Number(vb[1]) : 0,
+    y: vb ? Number(vb[2]) : 0,
+    width: vb ? Number(vb[3]) : meta.width,
+    height: vb ? Number(vb[4]) : meta.height,
   };
 }
 

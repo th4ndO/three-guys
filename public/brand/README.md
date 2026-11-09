@@ -1,20 +1,19 @@
-# Brand files — drop the real SVGs here
+# Brand files
 
-Every SVG in this folder is a **placeholder** (dashed outline, "PLACEHOLDER" comment).
-Replace each one with the supplied file from the Three Guys brand kit, keeping the
-same file name. Copy them unchanged — never edit, recolour or redraw the logo.
+These are the supplied Three Guys logo files, copied **unchanged** from the brand kit
+(`Three Guys - Brand Kit/Logo/`). Never edit, recolour, rotate or redraw them.
 
-| File here | Copy from brand kit |
+| File | From the brand kit |
 | --- | --- |
-| `three-guys_primary_full-colour.svg` | `Logo/01 Primary/three-guys_primary_full-colour.svg` |
-| `three-guys_primary_full-colour-on-dark.svg` | `Logo/01 Primary/three-guys_primary_full-colour-on-dark.svg` |
-| `three-guys_primary-slogan_full-colour.svg` | `Logo/02 Primary + Slogan/three-guys_primary-slogan_full-colour.svg` |
-| `three-guys_icon_full-colour.svg` | `Logo/05 Icon - Totem/three-guys_icon_full-colour.svg` |
-| `three-guys_icon-happy-face_full-colour.svg` | the full-colour SVG in `Logo/06 Icon - Happy Face/` (rename to this) |
+| `three-guys_primary_full-colour.svg` | `01 Primary/` — header (on Cream) |
+| `three-guys_primary_full-colour-on-dark.svg` | `01 Primary/` — footer (on Ink) |
+| `three-guys_primary-slogan_full-colour.svg` | `02 Primary + Slogan/` — hero (on Sage) |
+| `three-guys_icon_full-colour.svg` | `05 Icon - Totem/` — single faces are cropped from it with a viewBox |
+| `three-guys_face_full-colour.svg` | `06 Icon - Happy Face/` — favicon and app icons |
 
-Then run `npm run build`. The `prebuild` step regenerates `favicon.ico`, `icon.png`,
-`apple-icon.png`, the Open Graph image and the logo dimensions from these files,
-and warns while any placeholder is still in place.
+`npm run build` regenerates `favicon.ico`, `icon.png`, `apple-icon.png`, the Open Graph
+image and the logo dimensions (`src/generated/brand.json`) from these files.
 
-After swapping in the slogan logo, set `heroFaceSelectors` in `content/site.ts`
-to the ids/selectors of the three face groups inside that SVG so they bob on load.
+The hero faces bob by targeting the slogan logo's paths by position (see
+`heroFaceSelectors` in `content/site.ts`). If this file is ever replaced with a new
+version, check those selectors still match the faces.

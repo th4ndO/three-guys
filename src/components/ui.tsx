@@ -52,11 +52,11 @@ export function SectionHeading({
           {eyebrow}
         </span>
       </div>
-      <h2 id={id} className="headline mt-6 text-4xl sm:text-5xl md:text-6xl">
+      <h2 id={id} className="headline mt-5 text-[2.4rem] sm:text-5xl md:mt-6 md:text-6xl">
         {title}
       </h2>
       {intro && (
-        <p className={`mt-5 text-lg leading-relaxed md:text-xl ${dark ? "text-cream/90" : "text-ink/85"}`}>
+        <p className={`mt-4 text-base leading-relaxed sm:text-lg md:mt-5 md:text-xl ${dark ? "text-cream/90" : "text-ink/85"}`}>
           {intro}
         </p>
       )}

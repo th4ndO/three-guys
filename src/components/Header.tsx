@@ -42,9 +42,12 @@ export function Header() {
       >
         Skip to content
       </a>
-      <div className="mx-auto flex h-24 max-w-6xl items-center justify-between gap-6 px-3 md:px-6">
-        <a href="#top" aria-label="Three Guys — back to top" className="shrink-0">
-          <Logo variant="primary" alt="" className="h-auto w-[140px] md:w-[150px]" priority />
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-6 px-3 md:h-24 md:px-6">
+        <a href="#top" aria-label="Three Guys — back to top" className="flex min-h-11 shrink-0 items-center">
+          {/* Phones: the wordmark (brand guide p.6 — the faces appear right below in the hero).
+              Tablet/desktop: the primary logo with its full clear space. */}
+          <Logo variant="wordmark" alt="" className="h-auto w-[148px] md:hidden" priority />
+          <Logo variant="primary" alt="" className="hidden h-auto w-[150px] md:block" priority />
         </a>
 
         <nav aria-label="Main" className="hidden md:block">
@@ -95,7 +98,7 @@ export function Header() {
         id="mobile-nav"
         aria-label="Main"
         hidden={!open}
-        className="menu-panel fixed inset-x-0 bottom-0 top-24 overflow-y-auto overscroll-contain bg-cream md:hidden"
+        className="menu-panel fixed inset-x-0 bottom-0 top-16 overflow-y-auto overscroll-contain bg-cream md:hidden"
       >
         <div className="flex min-h-full flex-col px-5 pb-10 pt-6">
           <ul className="flex flex-col">
@@ -115,7 +118,7 @@ export function Header() {
           <a
             href="#contact"
             onClick={() => setOpen(false)}
-            className="menu-item group label mt-8 inline-flex items-center justify-center gap-3 rounded-full bg-ink px-7 py-4 text-cream"
+            className="menu-item press group label mt-8 inline-flex min-h-12 items-center justify-center gap-3 rounded-full bg-ink px-7 py-4 text-cream"
             style={{ "--d": "0.4s" } as React.CSSProperties}
           >
             Let&rsquo;s talk

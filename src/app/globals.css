@@ -19,8 +19,14 @@
 
 @layer base {
   html {
-    scroll-padding-top: 6rem;
+    scroll-padding-top: 4.5rem;
     -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+  }
+  @media (min-width: 768px) {
+    html {
+      scroll-padding-top: 6.5rem;
+    }
   }
   body {
     @apply bg-sage font-sans text-ink antialiased;
@@ -108,24 +114,15 @@
     animation-delay: 0.15s;
   }
 
-  /* Hover effects */
+  /* Hover effects — only on devices that really hover (mouse/trackpad),
+     so nothing sticks after a tap on a phone. */
   .lift {
     transition:
       transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
       box-shadow 0.35s;
   }
-  .lift:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 18px 40px -20px rgb(30 31 34 / 0.45);
-  }
-  .group:hover .hop {
-    animation: hop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-  }
   .zoom {
     transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-  .group:hover .zoom {
-    transform: scale(1.12);
   }
   .nudge-right,
   .nudge-down,
@@ -133,13 +130,41 @@
   .pop {
     transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
-  .group:hover .nudge-right,
+  @media (hover: hover) {
+    .lift:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 40px -20px rgb(30 31 34 / 0.45);
+    }
+    .group:hover .hop {
+      animation: hop-hover 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .group:hover .zoom { transform: scale(1.12); }
+    .group:hover .nudge-right { transform: translateX(5px); }
+    .group:hover .nudge-down { transform: translateY(4px); }
+    .group:hover .nudge-send { transform: translate(4px, -4px); }
+    .group:hover .pop { transform: scale(1.15); }
+  }
   .group:focus-visible .nudge-right { transform: translateX(5px); }
-  .group:hover .nudge-down,
   .group:focus-visible .nudge-down { transform: translateY(4px); }
-  .group:hover .nudge-send,
   .group:focus-visible .nudge-send { transform: translate(4px, -4px); }
-  .group:hover .pop { transform: scale(1.15); }
+
+  /* Touch: every card and button answers a press. */
+  .press {
+    transition: transform 0.15s ease-out, box-shadow 0.35s;
+  }
+  .press:active {
+    transform: scale(0.97);
+  }
+
+  /* Faces hop once as their card scrolls in — so phones get it too. */
+  html.js [data-reveal].is-in .hop {
+    animation: hop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s;
+  }
+
+  /* "Swipe →" hint on the Work row (phones only). */
+  .nudge-hint {
+    animation: hint 1.6s ease-in-out infinite;
+  }
 
   .navlink::after {
     transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
@@ -191,6 +216,15 @@
   0%, 100% { transform: translateY(0); }
   40% { transform: translateY(-10px); }
   70% { transform: translateY(2px); }
+}
+@keyframes hop-hover {
+  0%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-10px); }
+  70% { transform: translateY(2px); }
+}
+@keyframes hint {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(6px); }
 }
 @keyframes fade-down {
   from { opacity: 0; transform: translateY(-12px); }

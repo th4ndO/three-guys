@@ -20,7 +20,7 @@ import { projects, type Category } from "@content/projects";
 import { links, site, type Face } from "@content/site";
 
 const wrap = "mx-auto max-w-6xl px-5 md:px-8";
-const section = "py-20 md:py-28";
+const section = "py-14 md:py-28";
 
 // TODO: draft copy — review and edit before launch.
 const SERVICES: { face: Face; title: Category; blurb: string; items: string[] }[] = [
@@ -54,9 +54,9 @@ const STEPS = [
 const CATEGORY_FACE: Record<Category, Face> = { Design: "thinker", Entertainment: "joker", Marketing: "happy" };
 
 const buttonDark =
-  "group label inline-flex items-center justify-center gap-3 rounded-full bg-ink px-7 py-4 text-cream transition-transform hover:-translate-y-0.5";
+  "press group label inline-flex min-h-12 items-center justify-center gap-3 rounded-full bg-ink px-7 py-3.5 text-cream md:py-4";
 const buttonLine =
-  "group label inline-flex items-center justify-center gap-3 rounded-full border-2 border-ink px-7 py-4 text-ink transition-colors hover:bg-ink/10";
+  "press group label inline-flex min-h-12 items-center justify-center gap-3 rounded-full border-2 border-ink px-7 py-3.5 text-ink transition-colors hover:bg-ink/10 md:py-4";
 
 export default function Home() {
   return (
@@ -66,9 +66,9 @@ export default function Home() {
       <main id="main" tabIndex={-1} className="focus:outline-none">
         {/* 1 ─ Hero: centred and stacked, logo first */}
         <section id="top" aria-labelledby="hero-title" className="overflow-hidden bg-sage">
-          <div className={`${wrap} flex flex-col items-center pb-20 pt-10 text-center md:pb-28 md:pt-16`}>
-            <HeroLogo className="hero-in w-full max-w-[300px] sm:max-w-[400px] md:max-w-[480px]" />
-            <h1 id="hero-title" className="headline mt-10 text-[3.25rem] sm:text-7xl lg:text-[7.5rem]">
+          <div className={`${wrap} flex flex-col items-center pb-14 pt-5 text-center md:pb-28 md:pt-16`}>
+            <HeroLogo className="hero-in w-full max-w-[176px] sm:max-w-[360px] md:max-w-[480px]" />
+            <h1 id="hero-title" className="headline mt-5 text-[2.6rem] sm:mt-8 sm:text-7xl lg:text-[7.5rem]">
               <span className="hero-in inline-block" style={{ "--d": "0.15s" } as React.CSSProperties}>Three minds.</span>{" "}
               <span className="hero-in relative inline-block whitespace-nowrap" style={{ "--d": "0.3s" } as React.CSSProperties}>
                 One studio.
@@ -79,11 +79,11 @@ export default function Home() {
                 </span>
               </span>
             </h1>
-            <p className="hero-in mt-8 max-w-xl text-lg leading-relaxed md:text-xl" style={{ "--d": "0.45s" } as React.CSSProperties}>
+            <p className="hero-in mt-6 max-w-xl text-base leading-relaxed sm:mt-8 sm:text-lg md:text-xl" style={{ "--d": "0.45s" } as React.CSSProperties}>
               {/* TODO: draft copy */}
               We&rsquo;re a creative studio for design, entertainment and marketing. We think it through, then we make it happen.
             </p>
-            <div className="hero-in mt-9 flex w-full flex-col gap-3 sm:w-auto sm:flex-row" style={{ "--d": "0.6s" } as React.CSSProperties}>
+            <div className="hero-in mt-6 flex w-full flex-col gap-2.5 sm:mt-9 sm:w-auto sm:flex-row sm:gap-3" style={{ "--d": "0.6s" } as React.CSSProperties}>
               <a href="#work" className={buttonDark}>See our work <ArrowDownIcon className="nudge-down h-5 w-5" /></a>
               <a href="#contact" className={buttonLine}>Let&rsquo;s talk <ArrowRightIcon className="nudge-right h-5 w-5" /></a>
             </div>
@@ -102,21 +102,21 @@ export default function Home() {
               title="Three things. Done properly."
               intro="Most projects need a bit of all three. That's the point of us." /* TODO: draft copy */
             />
-            <ul className="mt-14 grid gap-6 md:grid-cols-3">
+            <ul className="mt-10 grid gap-5 md:mt-14 md:grid-cols-3 md:gap-6">
               {SERVICES.map((s, idx) => (
                 <li
                   key={s.title}
                   data-reveal
                   style={{ "--d": `${idx * 0.12}s` } as React.CSSProperties}
-                  className="lift group flex flex-col overflow-hidden rounded-[var(--radius-card)] bg-sage"
+                  className="lift press group flex flex-col overflow-hidden rounded-[var(--radius-card)] bg-sage"
                 >
-                  <div className={`${faceBg(s.face)} flex items-center justify-center px-6 py-8`}>
-                    <FaceMark face={s.face} className="hop h-20 w-auto" />
+                  <div className={`${faceBg(s.face)} flex items-center justify-center px-6 py-5 md:py-8`}>
+                    <FaceMark face={s.face} className="hop h-14 w-auto md:h-20" />
                   </div>
-                  <div className="flex flex-1 flex-col p-7">
+                  <div className="flex flex-1 flex-col p-6 md:p-7">
                     <h3 className="headline text-3xl">{s.title}</h3>
                     <p className="mt-3 leading-relaxed">{s.blurb}</p>
-                    <ul className="mt-6 space-y-2 border-t border-ink/15 pt-5">
+                    <ul className="mt-5 space-y-2 border-t border-ink/15 pt-4 md:mt-6 md:pt-5">
                       {s.items.map((i) => (
                         <li key={i} className="flex items-start gap-3">
                           <span aria-hidden className={`mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full ${faceBg(s.face)}`}>
@@ -144,28 +144,30 @@ export default function Home() {
               intro="Three different heads, one shared way of working." /* TODO: draft copy */
               dark
             />
-            <ul className="mt-14 grid gap-10 sm:grid-cols-2 md:grid-cols-3 md:gap-8">
+            <ul className="mt-10 grid gap-5 sm:grid-cols-2 sm:gap-10 md:mt-14 md:grid-cols-3 md:gap-8">
               {site.team.map((m, idx) => (
                 <li
                   key={m.face}
                   data-reveal
                   style={{ "--d": `${idx * 0.12}s` } as React.CSSProperties}
-                  className="group text-center sm:text-left"
+                  className="group flex items-center gap-5 sm:block"
                 >
                   <div
-                    className={`relative mx-auto aspect-square w-full max-w-[320px] overflow-hidden rounded-[28px] bg-cream ring-8 ring-inset ${faceRing(m.face)} sm:mx-0`}
+                    className={`relative aspect-square w-28 shrink-0 overflow-hidden rounded-[20px] bg-cream ring-[6px] ring-inset sm:w-full sm:max-w-[320px] sm:rounded-[28px] sm:ring-8 ${faceRing(m.face)}`}
                   >
                     {m.photo ? (
                       <img src={m.photo} alt={`${m.name}, ${m.title.toLowerCase()}`} className="h-full w-full object-cover" loading="lazy" />
                     ) : (
                       <div className="flex h-full flex-col items-center justify-center gap-4">
-                        <FaceMark face={m.face} decorative className="hop h-20 w-auto opacity-90" />
-                        <span className="label text-ink/80">Photo coming soon</span>
+                        <FaceMark face={m.face} decorative className="hop h-10 w-auto opacity-90 sm:h-20" />
+                        <span className="label hidden text-ink/80 sm:block">Photo coming soon</span>
                       </div>
                     )}
                   </div>
-                  <h3 className="headline mt-6 text-3xl">{m.name}</h3>
+                  <div>
+                    <h3 className="headline text-2xl sm:mt-6 sm:text-3xl">{m.name}</h3>
                   <p className="mt-1 text-cream/85">{m.role}</p>
+                  </div>
                 </li>
               ))}
             </ul>
@@ -182,11 +184,18 @@ export default function Home() {
               title="Things we've made."
               intro="A few favourites. Ask us for the full story behind any of them." /* TODO: draft copy */
             />
-            <ul className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <p className="label mt-8 flex items-center gap-2 text-ink/80 sm:hidden" aria-hidden="true">
+              Swipe <ArrowRightIcon className="nudge-hint h-4 w-4" />
+            </p>
+            <ul
+              aria-label="Projects"
+              tabIndex={0}
+              className="-mx-5 mt-4 flex snap-x snap-mandatory scroll-px-5 gap-4 overflow-x-auto px-5 pb-4 [scrollbar-width:none] sm:mx-0 sm:mt-14 sm:grid sm:snap-none sm:grid-cols-2 sm:gap-6 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-3 [&::-webkit-scrollbar]:hidden"
+            >
               {projects.map((p, idx) => {
                 const face = CATEGORY_FACE[p.category];
                 const card = (
-                  <article className="lift group h-full overflow-hidden rounded-[var(--radius-card)] bg-sage">
+                  <article className="lift press group h-full overflow-hidden rounded-[var(--radius-card)] bg-sage">
                     <div className={`relative aspect-[4/3] ${p.image ? "" : faceBg(face)}`}>
                       {p.image ? (
                         <img src={p.image.src} alt={p.image.alt} className="zoom h-full w-full object-cover" loading="lazy" />
@@ -205,7 +214,7 @@ export default function Home() {
                   </article>
                 );
                 return (
-                  <li key={p.slug} data-reveal style={{ "--d": `${(idx % 3) * 0.1}s` } as React.CSSProperties}>
+                  <li key={p.slug} data-reveal style={{ "--d": `${(idx % 3) * 0.1}s` } as React.CSSProperties} className="w-[82%] shrink-0 snap-start sm:w-auto">
                     {p.href ? (
                       <a href={p.href} className="block h-full rounded-[var(--radius-card)] transition-transform hover:-translate-y-1">
                         {card}
@@ -230,13 +239,13 @@ export default function Home() {
               title="How we work."
               intro="Mind over matter means we think before we make. It saves you time, money and a few headaches." /* TODO: draft copy */
             />
-            <ol className="mt-14 grid gap-6 md:grid-cols-3">
+            <ol className="mt-10 grid gap-5 md:mt-14 md:grid-cols-3 md:gap-6">
               {STEPS.map((s, i) => (
                 <li
                   key={s.title}
                   data-reveal
                   style={{ "--d": `${i * 0.15}s` } as React.CSSProperties}
-                  className="lift group relative rounded-[var(--radius-card)] bg-cream p-7"
+                  className="lift press group relative rounded-[var(--radius-card)] bg-cream p-6 md:p-7"
                 >
                   <div className="flex items-center justify-between">
                     <span className="label">Step {s.n}</span>
@@ -244,7 +253,7 @@ export default function Home() {
                       <FaceMark face={s.face} decorative className="hop h-9 w-auto" />
                     </span>
                   </div>
-                  <h3 className="headline mt-6 text-4xl">
+                  <h3 className="headline mt-5 text-3xl md:mt-6 md:text-4xl">
                     {s.title}
                     {i < STEPS.length - 1 && <ArrowRightIcon className="nudge-right ml-2 inline h-8 w-8 align-middle text-ink/40" />}
                   </h3>
@@ -288,7 +297,7 @@ export default function Home() {
                 intro="Big, small or still a bit fuzzy. Tell us what you're thinking and we'll get back to you." /* TODO: draft copy */
                 dark
               />
-              <ul className="mt-10 space-y-4 text-lg">
+              <ul className="mt-8 space-y-2 text-lg md:mt-10">
                 <ContactRow icon={<MailIcon />} label="Email" href={links.mailto} text={site.contact.email} />
                 <ContactRow icon={<PhoneIcon />} label="Phone" href={links.tel} text={site.contact.phone} />
                 <ContactRow icon={<WhatsAppIcon />} label="WhatsApp" href={links.whatsapp} text="Send us a message" external />
@@ -301,17 +310,17 @@ export default function Home() {
       </main>
 
       {/* 7 ─ Footer */}
-      <footer className="on-dark bg-ink py-14 text-cream">
+      <footer className="on-dark bg-ink py-12 text-cream md:py-14">
         <div className={`${wrap} flex flex-col gap-10 md:flex-row md:items-end md:justify-between`}>
           <div>
-            <Logo variant="primaryOnDark" alt="Three Guys" className="h-auto w-[180px]" />
+            <Logo variant="primaryOnDark" alt="Three Guys" className="h-auto w-[160px] md:w-[180px]" />
             <p className="label mt-6 text-cream">{site.slogan}</p>
           </div>
           <nav aria-label="Footer">
-            <ul className="flex flex-wrap gap-x-6 gap-y-3">
+            <ul className="flex flex-wrap gap-x-6 gap-y-1">
               {NAV.map((n) => (
                 <li key={n.href}>
-                  <a href={n.href} className="hover:underline">{n.label}</a>
+                  <a href={n.href} className="inline-flex min-h-11 min-w-11 items-center hover:underline">{n.label}</a>
                 </li>
               ))}
             </ul>
@@ -364,17 +373,19 @@ function ContactRow({
   external?: boolean;
 }) {
   return (
-    <li className="group flex items-center gap-4">
-      <span aria-hidden className="pop inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-cream/10 text-cream [&>svg]:h-5 [&>svg]:w-5">
-        {icon}
-      </span>
-      <span className="sr-only">{label}: </span>
+    <li>
       <a
         href={href}
-        className="font-medium underline decoration-clay decoration-2 underline-offset-4 hover:decoration-cream"
+        className="press group flex min-h-12 items-center gap-4 rounded-full pr-3"
         {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
       >
-        {text}
+        <span aria-hidden className="pop inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-cream/10 text-cream [&>svg]:h-5 [&>svg]:w-5">
+          {icon}
+        </span>
+        <span className="sr-only">{label}: </span>
+        <span className="font-medium underline decoration-clay decoration-2 underline-offset-4 group-hover:decoration-cream">
+          {text}
+        </span>
         {external && <span className="sr-only"> (opens in a new tab)</span>}
       </a>
     </li>

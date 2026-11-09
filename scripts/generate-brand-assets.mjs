@@ -16,6 +16,7 @@ const files = {
   primary: "three-guys_primary_full-colour.svg",
   primaryOnDark: "three-guys_primary_full-colour-on-dark.svg",
   primarySlogan: "three-guys_primary-slogan_full-colour.svg",
+  wordmark: "three-guys_wordmark_full-colour.svg",
   totem: "three-guys_icon_full-colour.svg",
   happyFace: "three-guys_face_full-colour.svg",
 };

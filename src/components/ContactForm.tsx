@@ -60,7 +60,7 @@ export function ContactForm() {
       <div className="flex flex-col gap-3 sm:col-span-2 sm:flex-row sm:items-center sm:justify-between">
         <button
           type="submit"
-          className="group label inline-flex items-center justify-center gap-3 rounded-full bg-clay px-7 py-4 text-ink transition-transform hover:-translate-y-0.5 active:scale-95"
+          className="press group label inline-flex min-h-12 items-center justify-center gap-3 rounded-full bg-clay px-7 py-4 text-ink"
         >
           Send it over
           <SendIcon className="nudge-send h-5 w-5" />

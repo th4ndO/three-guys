@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Logo } from "./Logo";
 import { NAV } from "./nav";
 import { site } from "@content/site";
+import { ArrowRightIcon, CloseIcon, MenuIcon } from "./icons";
 
 
 export function Header() {
@@ -45,9 +46,10 @@ export function Header() {
                 <li key={item.href} className="ml-2">
                   <a
                     href={item.href}
-                    className="label inline-flex rounded-full bg-ink px-5 py-3 text-cream transition-colors hover:bg-midnight"
+                    className="label inline-flex items-center gap-2 rounded-full bg-ink px-5 py-3 text-cream transition-colors hover:bg-midnight"
                   >
                     Let&rsquo;s talk
+                    <ArrowRightIcon className="h-4 w-4" />
                   </a>
                 </li>
               ) : (
@@ -66,12 +68,13 @@ export function Header() {
 
         <button
           type="button"
-          className="label inline-flex items-center gap-2 rounded-full border-2 border-ink px-4 py-2 md:hidden"
+          className="inline-flex h-12 w-12 items-center justify-center rounded-full border-2 border-ink md:hidden"
           aria-expanded={open}
           aria-controls="mobile-nav"
+          aria-label={open ? "Close menu" : "Open menu"}
           onClick={() => setOpen((v) => !v)}
         >
-          {open ? "Close" : "Menu"}
+          {open ? <CloseIcon /> : <MenuIcon />}
         </button>
       </div>
 
@@ -88,9 +91,10 @@ export function Header() {
                 <a
                   href={item.href}
                   onClick={() => setOpen(false)}
-                  className="headline block py-4 text-4xl"
+                  className="headline flex items-center justify-between py-4 text-4xl"
                 >
                   {item.label}
+                  <ArrowRightIcon className="h-7 w-7 shrink-0" />
                 </a>
               </li>
             ))}
@@ -98,9 +102,10 @@ export function Header() {
           <a
             href="#contact"
             onClick={() => setOpen(false)}
-            className="label mt-8 inline-flex justify-center rounded-full bg-ink px-7 py-4 text-cream"
+            className="label mt-8 inline-flex items-center justify-center gap-3 rounded-full bg-ink px-7 py-4 text-cream"
           >
             Let&rsquo;s talk
+            <ArrowRightIcon className="h-5 w-5" />
           </a>
           <p className="label mt-auto pt-10 text-center">{site.slogan}</p>
         </div>

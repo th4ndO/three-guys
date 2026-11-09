@@ -2,6 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import { site } from "@content/site";
+import { SendIcon } from "./icons";
 
 const NEEDS = ["Design", "Entertainment", "Marketing", "A bit of everything", "Not sure yet"];
 
@@ -59,9 +60,10 @@ export function ContactForm() {
       <div className="flex flex-col gap-3 sm:col-span-2 sm:flex-row sm:items-center sm:justify-between">
         <button
           type="submit"
-          className="label inline-flex justify-center rounded-full bg-clay px-7 py-4 text-ink transition-transform hover:-translate-y-0.5"
+          className="label inline-flex items-center justify-center gap-3 rounded-full bg-clay px-7 py-4 text-ink transition-transform hover:-translate-y-0.5"
         >
           Send it over
+          <SendIcon className="h-5 w-5" />
         </button>
         <p className="text-sm text-cream/85" aria-live="polite">
           {sent

@@ -1,6 +1,15 @@
 import { ContactForm } from "@/components/ContactForm";
 import { FaceMark } from "@/components/FaceMark";
 import { Header } from "@/components/Header";
+import {
+  ArrowDownIcon,
+  ArrowRightIcon,
+  CheckIcon,
+  InstagramIcon,
+  MailIcon,
+  PhoneIcon,
+  WhatsAppIcon,
+} from "@/components/icons";
 import { NAV } from "@/components/nav";
 import { HeroLogo } from "@/components/HeroLogo";
 import { Logo } from "@/components/Logo";
@@ -43,9 +52,9 @@ const STEPS = [
 const CATEGORY_FACE: Record<Category, Face> = { Design: "thinker", Entertainment: "joker", Marketing: "happy" };
 
 const buttonDark =
-  "label inline-flex items-center justify-center rounded-full bg-ink px-7 py-4 text-cream transition-transform hover:-translate-y-0.5";
+  "label inline-flex items-center justify-center gap-3 rounded-full bg-ink px-7 py-4 text-cream transition-transform hover:-translate-y-0.5";
 const buttonLine =
-  "label inline-flex items-center justify-center rounded-full border-2 border-ink px-7 py-4 text-ink transition-colors hover:bg-ink/10";
+  "label inline-flex items-center justify-center gap-3 rounded-full border-2 border-ink px-7 py-4 text-ink transition-colors hover:bg-ink/10";
 
 export default function Home() {
   return (
@@ -72,8 +81,8 @@ export default function Home() {
               We&rsquo;re a creative studio for design, entertainment and marketing. We think it through, then we make it happen.
             </p>
             <div className="mt-9 flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
-              <a href="#work" className={buttonDark}>See our work</a>
-              <a href="#contact" className={buttonLine}>Let&rsquo;s talk</a>
+              <a href="#work" className={buttonDark}>See our work <ArrowDownIcon className="h-5 w-5" /></a>
+              <a href="#contact" className={buttonLine}>Let&rsquo;s talk <ArrowRightIcon className="h-5 w-5" /></a>
             </div>
           </div>
         </section>
@@ -99,8 +108,10 @@ export default function Home() {
                     <p className="mt-3 leading-relaxed">{s.blurb}</p>
                     <ul className="mt-6 space-y-2 border-t border-ink/15 pt-5">
                       {s.items.map((i) => (
-                        <li key={i} className="flex gap-3">
-                          <span aria-hidden className={`mt-2 h-2 w-2 shrink-0 rounded-full ${faceBg(s.face)} ring-1 ring-ink/30`} />
+                        <li key={i} className="flex items-start gap-3">
+                          <span aria-hidden className={`mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full ${faceBg(s.face)}`}>
+                            <CheckIcon className="h-3.5 w-3.5" strokeWidth={3} />
+                          </span>
                           {i}
                         </li>
                       ))}
@@ -258,10 +269,10 @@ export default function Home() {
                 dark
               />
               <ul className="mt-10 space-y-4 text-lg">
-                <ContactRow label="Email" href={links.mailto} text={site.contact.email} />
-                <ContactRow label="Phone" href={links.tel} text={site.contact.phone} />
-                <ContactRow label="WhatsApp" href={links.whatsapp} text="Send us a message" external />
-                <ContactRow label="Instagram" href={links.instagram} text={`@${site.contact.instagramHandle}`} external />
+                <ContactRow icon={<MailIcon />} label="Email" href={links.mailto} text={site.contact.email} />
+                <ContactRow icon={<PhoneIcon />} label="Phone" href={links.tel} text={site.contact.phone} />
+                <ContactRow icon={<WhatsAppIcon />} label="WhatsApp" href={links.whatsapp} text="Send us a message" external />
+                <ContactRow icon={<InstagramIcon />} label="Instagram" href={links.instagram} text={`@${site.contact.instagramHandle}`} external />
               </ul>
             </div>
             <ContactForm />
@@ -283,8 +294,24 @@ export default function Home() {
                   <a href={n.href} className="hover:underline">{n.label}</a>
                 </li>
               ))}
-              <li><a href={links.instagram} className="hover:underline" rel="noopener noreferrer" target="_blank">Instagram</a></li>
-              <li><a href={links.whatsapp} className="hover:underline" rel="noopener noreferrer" target="_blank">WhatsApp</a></li>
+            </ul>
+            <ul className="mt-6 flex gap-3 md:justify-end" aria-label="Social">
+              {[
+                { href: links.instagram, label: "Instagram", icon: <InstagramIcon /> },
+                { href: links.whatsapp, label: "WhatsApp", icon: <WhatsAppIcon /> },
+                { href: links.mailto, label: "Email", icon: <MailIcon /> },
+              ].map((s) => (
+                <li key={s.label}>
+                  <a
+                    href={s.href}
+                    aria-label={s.label}
+                    {...(s.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                    className="inline-flex h-11 w-11 items-center justify-center rounded-full border-2 border-cream/30 transition-colors hover:border-cream hover:bg-cream hover:text-ink [&>svg]:h-5 [&>svg]:w-5"
+                  >
+                    {s.icon}
+                  </a>
+                </li>
+              ))}
             </ul>
           </nav>
         </div>
@@ -303,10 +330,25 @@ export default function Home() {
   );
 }
 
-function ContactRow({ label, href, text, external }: { label: string; href: string; text: string; external?: boolean }) {
+function ContactRow({
+  icon,
+  label,
+  href,
+  text,
+  external,
+}: {
+  icon: React.ReactNode;
+  label: string;
+  href: string;
+  text: string;
+  external?: boolean;
+}) {
   return (
-    <li className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:gap-4">
-      <span className="label w-28 shrink-0 text-cream/85">{label}</span>
+    <li className="flex items-center gap-4">
+      <span aria-hidden className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-cream/10 text-cream [&>svg]:h-5 [&>svg]:w-5">
+        {icon}
+      </span>
+      <span className="sr-only">{label}: </span>
       <a
         href={href}
         className="font-medium underline decoration-clay decoration-2 underline-offset-4 hover:decoration-cream"
